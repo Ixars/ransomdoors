@@ -25,7 +25,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBlock HorizontalAlignment="Left" Margin="118,34,0,0" TextWrapping="Wrap" Text="Ransom's Configuration" VerticalAlignment="Top" Height="68" Width="164" FontWeight="Bold" FontFamily="Nyala" FontSize="30">
+        <TextBlock HorizontalAlignment="Left" Margin="112,34,0,0" TextWrapping="Wrap" Text="Ransom's Configuration" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Nyala" FontSize="25" Width="170" Height="68">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFEDF77"/>
