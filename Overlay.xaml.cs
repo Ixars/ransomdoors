@@ -105,6 +105,7 @@ namespace rans0m
         {
             ContextMenuStrip trayMenu = new ContextMenuStrip();
 
+            trayMenu.Items.Add("Spawn RANS0M").Click += (s, e) => _ = SpawnRansom();
             trayMenu.Items.Add("Configuration").Click += (s, e) => new ConfigWindow().Show();
             trayMenu.Items.Add("Close").Click += (s, e) => WpfApplication.Current.Shutdown();
 
