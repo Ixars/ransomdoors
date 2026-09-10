@@ -560,9 +560,18 @@ namespace rans0m
 
             if (Config.ExecCMDOnDeath)
             {
-                string cmd = Config.CMDOnDeath.Split(" ")[0];
-                string args = Config.CMDOnDeath.Substring(cmd.Length);
-                Process.Start(cmd, args);
+                string command = Config.CMDOnDeath.Trim();
+
+                if (Uri.TryCreate(command, UriKind.Absolute, out Uri? uri) &&
+                    (uri.Scheme == Uri.UriSchemeHttp ||
+                    uri.Scheme == Uri.UriSchemeHttps))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = uri.ToString(),
+                        UseShellExecute = true
+                    });
+                }
             }
 
             if (Config.CrashOnDeath)
