@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\rans0m.csproj": {}
+    "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\rans0m.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\rans0m.csproj": {
+    "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\rans0m.csproj": {
       "version": "2.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\rans0m.csproj",
+        "projectUniqueName": "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\rans0m.csproj",
         "projectName": "rans0m",
-        "projectPath": "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\rans0m.csproj",
-        "packagesPath": "C:\\Users\\Ixar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\obj\\",
+        "projectPath": "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\rans0m.csproj",
+        "packagesPath": "C:\\Users\\Dralle\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ixar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Dralle\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -46,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0-windows": {
@@ -81,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

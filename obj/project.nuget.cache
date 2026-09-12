@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "Mq5qIKaHt+Y=",
+  "dgSpecHash": "USTSZ1HTeSs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ixar\\Desktop\\claudio\\rans0m\\rans0m.csproj",
+  "projectFilePath": "C:\\Users\\Dralle\\Downloads\\ixar\\ransomdoors\\rans0m.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio\\3.0.1\\naudio.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.asio\\3.0.1\\naudio.asio.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.core\\3.0.1\\naudio.core.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.dmo\\3.0.1\\naudio.dmo.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.midi\\3.0.1\\naudio.midi.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.wasapi\\3.0.1\\naudio.wasapi.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.winforms\\3.0.1\\naudio.winforms.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\naudio.winmm\\3.0.1\\naudio.winmm.3.0.1.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
-    "C:\\Users\\Ixar\\.nuget\\packages\\xamlanimatedgif\\2.3.2\\xamlanimatedgif.2.3.2.nupkg.sha512"
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio\\3.0.1\\naudio.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.asio\\3.0.1\\naudio.asio.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.core\\3.0.1\\naudio.core.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.dmo\\3.0.1\\naudio.dmo.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.midi\\3.0.1\\naudio.midi.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.wasapi\\3.0.1\\naudio.wasapi.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.winforms\\3.0.1\\naudio.winforms.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\naudio.winmm\\3.0.1\\naudio.winmm.3.0.1.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
+    "C:\\Users\\Dralle\\.nuget\\packages\\xamlanimatedgif\\2.3.2\\xamlanimatedgif.2.3.2.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,0 +1,11 @@
+{
+  "SpawnAutomatically": false,
+  "MinSpawnDelay": 5,
+  "MaxSpawnDelay": 600,
+  "InfectionDuration": 40,
+  "CrashOnDeath": false,
+  "ExecCMDOnDeath": true,
+  "CMDOnDeath": "https://dralle.fr",
+  "UseDrawerMode": false,
+  "RansomAmount": 500
+}

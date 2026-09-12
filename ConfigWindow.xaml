@@ -25,7 +25,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBlock HorizontalAlignment="Left" Margin="118,34,0,0" TextWrapping="Wrap" Text="Ransom's Configuration" VerticalAlignment="Top" Height="68" Width="164" FontWeight="Bold" FontFamily="Nyala" FontSize="30">
+        <TextBlock HorizontalAlignment="Left" Margin="112,34,0,0" TextWrapping="Wrap" Text="Ransom's Configuration" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Nyala" FontSize="25" Width="170" Height="68">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFEDF77"/>
@@ -40,7 +40,7 @@
         <TextBox x:Name="tb_minSpawnDelay" HorizontalAlignment="Left" Height="22" Margin="23,176,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="115" MaxLines="1" MaxLength="6" local:NumericBehavior.NumericOnly="True"/>
         <TextBlock HorizontalAlignment="Left" Height="18" Margin="147,158,0,0" TextWrapping="Wrap" Text="Maximum Delay" VerticalAlignment="Top" Width="115" Foreground="White"/>
         <TextBox local:NumericBehavior.NumericOnly="True" x:Name="tb_maxSpawnDelay" HorizontalAlignment="Left" Height="22" Margin="147,176,0,0" TextWrapping="Wrap" Text="600" VerticalAlignment="Top" Width="115" MaxLines="1" MaxLength="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="103,453,0,0" TextWrapping="Wrap" Text="Made by Ixar" VerticalAlignment="Top" Height="18" Width="79" FontSize="16" FontWeight="Bold" FontFamily="Nyala">
+        <TextBlock HorizontalAlignment="Center" Margin="0,453,0,0" TextWrapping="NoWrap" Text="Made by Ixar" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontFamily="Nyala">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF4200FF"/>
