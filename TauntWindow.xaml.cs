@@ -19,7 +19,7 @@ namespace rans0m
             Global.HideSystemMenu(this);
 
             Stream tauntSpawnStream = Global.GetResourceSteam("Sounds/tauntSpawn.wav");
-            _ = Task.Run(() => SoundHelper.Create(tauntSpawnStream).Play());
+            _ = Task.Run(() => SoundHandle.Create(tauntSpawnStream).Play());
 
             // Sets random window title, image and size
             Title = Global.tauntTitles[Global.rng.Next(Global.tauntTitles.Count)];
@@ -42,7 +42,7 @@ namespace rans0m
             await Task.Delay(Global.rng.Next(4000, 10 * 1000));
             // ResetRansom's cleanup sweep may have already closed this while the timer was counting down
             if (_closed) return;
-            SoundHelper.Create(Global.GetResourceSteam("Sounds/tauntLeave.wav")).Play();
+            SoundHandle.Create(Global.GetResourceSteam("Sounds/tauntLeave.wav")).Play();
             Close();
         }
     }

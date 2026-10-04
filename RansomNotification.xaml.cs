@@ -79,7 +79,7 @@ namespace rans0m
                             if (!sfxPlayed)
                             {
                                 // Use the coin
-                                SoundHandle cashSfx = SoundHelper.Create(Global.GetResourceSteam("Sounds/cash.wav")); // Need to replace the sfx it's kinda trash
+                                SoundHandle cashSfx = SoundHandle.Create(Global.GetResourceSteam("Sounds/cash.wav")); // Need to replace the sfx it's kinda trash
                                 cashSfx.Play();
                                 sfxPlayed = true;
                             }

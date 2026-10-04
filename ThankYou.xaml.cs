@@ -29,10 +29,12 @@ namespace rans0m
             this.Left = previousLeft;
             this.Top = previousTop;
 
+            var (screenW, screenH) = Global.OverlaySizeDips();
+
             double totalWidth = Width * 1.3;
             double totalHeight = Height * 1.3;
-            double centerLeft = (Global.screenBounds.Width / 2) - totalWidth / 2;
-            double centerTop = (Global.screenBounds.Height / 2) - totalHeight / 2;
+            double centerLeft = (screenW / 2) - totalWidth / 2;
+            double centerTop = (screenH / 2) - totalHeight / 2;
 
             await Task.Delay(200);
             this.Left = Global.Lerp(this.Left, centerLeft, 0.5);
@@ -51,7 +53,7 @@ namespace rans0m
             this.img_ransom.Opacity = 0;
             this.img_oksign.Opacity = 1;
 
-            SoundHandle thankYouSfx = SoundHelper.Create(Global.GetResourceSteam("Sounds/thankyou.wav"));
+            SoundHandle thankYouSfx = SoundHandle.Create(Global.GetResourceSteam("Sounds/thankyou.wav"));
             thankYouSfx.Play();
 
             Global.CenterWindow(this);
@@ -74,7 +76,7 @@ namespace rans0m
                 Duration = new Duration(TimeSpan.FromMilliseconds(200))
             };
 
-            Task.Delay(400).ContinueWith(_ => {
+            _=Task.Delay(400).ContinueWith(_ => {
                 Dispatcher.Invoke(() =>
                 {
                     img_thx.Opacity = 100;

@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:rans0m"
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif" x:Class="rans0m.Overlay"
         mc:Ignorable="d"
-        Title="RANS0M" Height="450" Width="800" ShowInTaskbar="False" IsTabStop="False" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Title="RANS0M" ShowInTaskbar="False" IsTabStop="False" Topmost="True" ResizeMode="NoResize"
+        WindowState="Maximized"
         WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent" Loaded="Window_Loaded"
+        Background="Transparent" Loaded="Window_Loaded" AllowsTransparency="True"
 >
 
     <Grid x:Name="grid">

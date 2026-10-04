@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Resources;
 using System.Windows.Threading;
 using WpfApplication = System.Windows.Application;
 
@@ -18,35 +19,64 @@ namespace rans0m
         private Border[] dpbSegments;
         private NotifyIcon? trayIcon;
 
+        private double _dpiScaleX = 1.0;
+        private double _dpiScaleY = 1.0;
+
+        private SoundHandle spawnSound = SoundHandle.Create(Global.GetResourceSteam("Sounds/spawn.wav"));
+        private SoundHandle attackSound = SoundHandle.Create(Global.GetResourceSteam("Sounds/attack.wav"));
+        private SoundHandle installSound = SoundHandle.Create(Global.GetResourceSteam("Sounds/install.wav"));
+        private SoundHandle layer1 = SoundHandle.Create(Global.GetResourceSteam("Sounds/layer1.wav"));
+        private SoundHandle layer2 = SoundHandle.Create(Global.GetResourceSteam("Sounds/layer2.wav"));
+        private SoundHandle layer3 = SoundHandle.Create(Global.GetResourceSteam("Sounds/layer3.wav"));
+
         public Overlay()
         {
             InitializeComponent();
             Global.overlayWindow = this;
             dpbSegments = new Border[] { Seg0, Seg1, Seg2, Seg3, Seg4, Seg5, Seg6, Seg7, Seg8, Seg9 };
-            
+
             topMostTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
 
             keyboardHook.KeyPressed += Global.KeyPressed;
             keyboardHook.Hook();
 
-            this.Closing += (_, _) =>
+            this.Closing += (_, _) => CloseProperly();
+            AppDomain.CurrentDomain.ProcessExit += (_, _) => CloseProperly();
+            AppDomain.CurrentDomain.UnhandledException += (_, _) => CloseProperly();
+            Dispatcher.UnhandledException += (_, _) => CloseProperly();
+            Microsoft.Win32.SystemEvents.SessionEnding += (_, _) => CloseProperly();
+        }
+
+        private void CloseProperly()
+        {
+            trayIcon?.Visible = false;
+            FullCleanup();
+        }
+
+        private void UpdateDpiScale()
+        {
+            PresentationSource? source = PresentationSource.FromVisual(this);
+            if (source?.CompositionTarget is { } ct)
             {
-                // Hidden here instead of in Closed, otherwise it lingers as a ghost icon or smthing
-                trayIcon?.Visible = false;
-                FullCleanup();
-            };
+                _dpiScaleX = ct.TransformToDevice.M11;
+                _dpiScaleY = ct.TransformToDevice.M22;
+            }
+        }
+
+        protected override void OnDpiChanged(DpiScale oldDpi, DpiScale newDpi)
+        {
+            base.OnDpiChanged(oldDpi, newDpi);
+            _dpiScaleX = newDpi.DpiScaleX;
+            _dpiScaleY = newDpi.DpiScaleY;
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             await ResetRansom();
             MakeClickThrough();
+            UpdateDpiScale();
 
-            this.Left = 0;
-            this.Top = 0;
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
-            this.WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
 
             // Register file types and set the app to it's ready state
             FileTypeRegister.RegisterIconForExtension(".gold1", Global.GetBytesFromResource("Gold/Gold1.ico"), "GoldFile1");
@@ -153,8 +183,6 @@ namespace rans0m
 
 
 
-
-
         // -------------------- CORE --------------------
 
         /// <summary>
@@ -181,7 +209,7 @@ namespace rans0m
 
             img_idle.Opacity = 0;
             img_attack.Opacity = 0;
-            img_stopsign.Opacity = 0; 
+            img_stopsign.Opacity = 0;
             vb_download.Opacity = 0;
             vb_download.Width = 668;
             vb_download.Height = 88;
@@ -240,7 +268,7 @@ namespace rans0m
         private async Task InterruptibleDelay(int ms)
         {
             // Fresh CTS each call so an old Cancel() can't carry over into a later delay
-            _spawnDelayCts?.Dispose(); 
+            _spawnDelayCts?.Dispose();
             _spawnDelayCts = new CancellationTokenSource();
             try { await Task.Delay(ms, _spawnDelayCts.Token); }
             catch { }
@@ -257,6 +285,11 @@ namespace rans0m
             bool mouseMoved = await RansomWarning();
             if (mouseMoved) // User moved the mouse
             {
+                if (Config.a90Mode) { 
+                    await CrashJumpscare(); 
+                    return; 
+                }
+
                 int generatedGold = 0;
                 try { generatedGold = await Task.Run(() => GoldCoinManager.GenerateCoins()); }
                 catch { }
@@ -294,8 +327,6 @@ namespace rans0m
 
 
 
-
-
         // ------------------- RANSOM PHASES -------------------
 
         /// <summary>
@@ -304,9 +335,6 @@ namespace rans0m
         /// <returns>true if the mouse moved during the warning phase</returns>
         public async Task<bool> RansomWarning()
         {
-            Uri uri = new Uri("pack://application:,,,/Assets/Sounds/spawn.wav");
-            System.Windows.Resources.StreamResourceInfo streamResourceInfo = WpfApplication.GetResourceStream(uri);
-            SoundHandle spawnSound = SoundHelper.Create(streamResourceInfo.Stream);
             spawnSound.Play();
 
             // Shows Ransom's face randomly on the screen
@@ -321,7 +349,7 @@ namespace rans0m
             // Center Ransom's face and show the warning sign
             img_stopsign.Opacity = 100;
             Global.CenterControl(img_idle);
-            img_idle.Margin = new Thickness(img_idle.Margin.Left, img_idle.Margin.Top+50, 0, 0);
+            img_idle.Margin = new Thickness(img_idle.Margin.Left, img_idle.Margin.Top + 50, 0, 0);
             Background = new SolidColorBrush(Color.FromRgb(40, 0, 0));
 
             await Task.Delay(500); // End of spy phase
@@ -346,7 +374,6 @@ namespace rans0m
         /// </summary>
         public async Task DownloadJumpscare()
         {
-            SoundHandle attackSound = SoundHelper.Create(Global.GetResourceSteam("Sounds/attack.wav"));
             attackSound.Play();
 
             Global.CenterControl(img_attack);
@@ -363,7 +390,6 @@ namespace rans0m
             // Downloading screen
             img_attack.Opacity = 0;
 
-            SoundHandle installSound = SoundHelper.Create(Global.GetResourceSteam("Sounds/install.wav"));
             installSound.Play();
 
             vb_download.Opacity = 100;
@@ -396,7 +422,7 @@ namespace rans0m
                     txt_download.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                     await Task.Delay(120);
                 }
-                
+
             });
 
             _ = Dispatcher.BeginInvoke(async () =>
@@ -409,7 +435,7 @@ namespace rans0m
                     seg.Background = gradientBrush;
                 }
             });
-            
+
 
             // Text and download bar shake/glitch effect
             new Thread(() =>
@@ -464,11 +490,6 @@ namespace rans0m
 
             redVignette.Opacity = 100;
 
-            // OST
-            SoundHandle layer1 = SoundHelper.Create(Global.GetResourceSteam("Sounds/layer1.wav"));
-            SoundHandle layer2 = SoundHelper.Create(Global.GetResourceSteam("Sounds/layer2.wav"));
-            SoundHandle layer3 = SoundHelper.Create(Global.GetResourceSteam("Sounds/layer3.wav"));
-
             // Clamp so an unlucky generation run can never leave the ransom unpayable
             Global.ransomLeft = Math.Min(Config.RansomAmount, generatedGold);
             Global.underRansom = true;
@@ -477,9 +498,9 @@ namespace rans0m
             TaskCompletionSource<bool> paidSignal = new TaskCompletionSource<bool>();
             Global.RansomPayed = () => // Ransom payed event
             {
-                layer1.Stop();
-                layer2.Stop();
-                layer3.Stop();
+                layer1.Pause();
+                layer2.Pause();
+                layer3.Pause();
 
                 this.Dispatcher.Invoke(() => ResetRansom());
                 paidSignal.TrySetResult(true);
@@ -501,6 +522,10 @@ namespace rans0m
 
             Global.ransomTimeLeft = Config.InfectionDuration;
 
+            layer1.Reset();
+            layer2.Reset();
+            layer3.Reset();
+
             layer1.PlayLooping();
             bool startedLayer2 = false;
             bool startedLayer3 = false;
@@ -518,13 +543,13 @@ namespace rans0m
                 if (!startedLayer2 && elapsed >= layer1Seconds)
                 {
                     startedLayer2 = true;
-                    layer1.Stop();
+                    layer1.Pause();
                     layer2.PlayLooping();
                 }
                 else if (startedLayer2 && !startedLayer3 && elapsed >= layer1Seconds + layer2Seconds)
                 {
                     startedLayer3 = true;
-                    layer2.Stop();
+                    layer2.Pause();
                     layer3.Play();
                 }
             }
@@ -544,7 +569,6 @@ namespace rans0m
         /// </summary>
         public async Task CrashJumpscare()
         {
-            SoundHandle attackSound = SoundHelper.Create(Global.GetResourceSteam("Sounds/attack.wav"));
             attackSound.Play();
 
             Background = new SolidColorBrush(Color.FromRgb(100, 0, 0));
@@ -560,14 +584,30 @@ namespace rans0m
 
             if (Config.ExecCMDOnDeath)
             {
-                string cmd = Config.CMDOnDeath.Split(" ")[0];
-                string args = Config.CMDOnDeath.Substring(cmd.Length);
-                Process.Start(cmd, args);
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = "/c " + Config.CMDOnDeath,
+                    UseShellExecute = true,
+                    CreateNoWindow = true,
+                    ErrorDialog = true
+                };
+
+                Process.Start(psi);
             }
 
             if (Config.CrashOnDeath)
             {
-                Process.Start("shutdown", "/s /t 0");
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = "/c shutdown /s /t 0",
+                    UseShellExecute = true,
+                    CreateNoWindow = true,
+                    ErrorDialog = true
+                };
+
+                Process.Start(psi);
             }
 
             await ResetRansom();

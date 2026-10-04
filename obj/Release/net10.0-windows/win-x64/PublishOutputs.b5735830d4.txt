@@ -1,2 +1,0 @@
-C:\Users\Ixar\Desktop\WPF\rans0m\bin\Release\net10.0-windows\publish\win-x64\rans0m.pdb
-C:\Users\Ixar\Desktop\WPF\rans0m\bin\Release\net10.0-windows\publish\win-x64\rans0m.exe

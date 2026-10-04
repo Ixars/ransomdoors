@@ -52,8 +52,6 @@ namespace rans0m
         };
 
         public static string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "RansomDrawers");
-        private const double CrucifixSpawnChance = 0.1;
-        private const double Gold6SpawnChance = 0.3;
 
         /// <summary>
         /// Generate coins, chooses method based on config
@@ -107,7 +105,7 @@ namespace rans0m
             }
 
             // Honeypot
-            if (Global.rng.NextDouble() < Gold6SpawnChance)
+            if (Global.rng.NextDouble() < Config.HoneypotChance/100.0)
             {
                 try
                 {
@@ -128,7 +126,7 @@ namespace rans0m
             }
 
             // Crucifix
-            if (Global.rng.NextDouble() < CrucifixSpawnChance)
+            if (Global.rng.NextDouble() < Config.CrucChance/100.0)
             {
                 try
                 {
@@ -257,7 +255,7 @@ namespace rans0m
                 }
 
                 // Honeypot
-                if (allDirs.Count > 0 && Global.rng.NextDouble() < Gold6SpawnChance)
+                if (allDirs.Count > 0 && Global.rng.NextDouble() < Config.HoneypotChance / 100.0)
                 {
                     try
                     {
@@ -270,7 +268,7 @@ namespace rans0m
                 }
 
                 // Crucifix
-                if (allDirs.Count > 0 && Global.rng.NextDouble() < CrucifixSpawnChance)
+                if (allDirs.Count > 0 && Global.rng.NextDouble() < Config.CrucChance / 100.0)
                 {
                     try
                     {

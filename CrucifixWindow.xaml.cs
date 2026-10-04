@@ -21,7 +21,7 @@ namespace rans0m
 
             Global.RansomPayed?.Invoke();
 
-            _sound = SoundHelper.Create(Global.GetResourceSteam("Sounds/crucifix.wav"));
+            _sound = SoundHandle.Create(Global.GetResourceSteam("Sounds/crucifix.wav"));
             _sound.Play();
 
             _ = CloseAfterFallbackDelayAsync();

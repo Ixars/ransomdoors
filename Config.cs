@@ -19,7 +19,7 @@ public static class Config
 
     private static string GetConfigPath()
     {
-        return Path.Combine(AppContext.BaseDirectory, "config.json");
+        return Path.Combine(AppContext.BaseDirectory, "ransomconfig.json");
     }
 
     public static bool ConfigExists()
@@ -103,6 +103,13 @@ public static class Config
         set { _cache[nameof(SpawnAutomatically)] = value; }
     }
 
+    [ConfigField(false)]
+    public static bool a90Mode
+    {
+        get => GetOrDefault<bool>(nameof(a90Mode));
+        set { _cache[nameof(a90Mode)] = value; }
+    }
+
     [ConfigField(5)]
     public static int MinSpawnDelay
     {
@@ -147,7 +154,7 @@ public static class Config
         set { _cache[nameof(CMDOnDeath)] = value; }
     }
 
-    // ------------------ Coins -------------------
+    // ------------------ Items -------------------
 
     [ConfigField(false)]
     public static bool UseDrawerMode
@@ -161,5 +168,19 @@ public static class Config
     {
         get => GetOrDefault<int>(nameof(RansomAmount));
         set { _cache[nameof(RansomAmount)] = value; }
+    }
+
+    [ConfigField(10)]
+    public static int CrucChance
+    {
+        get => GetOrDefault<int>(nameof(CrucChance));
+        set { _cache[nameof(CrucChance)] = value; }
+    }
+
+    [ConfigField(25)]
+    public static int HoneypotChance
+    {
+        get => GetOrDefault<int>(nameof(HoneypotChance));
+        set { _cache[nameof(HoneypotChance)] = value; }
     }
 }
