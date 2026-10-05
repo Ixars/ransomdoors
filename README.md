@@ -45,7 +45,7 @@ disclaimer.
 
 ```
 git clone https://github.com/Ixars/ransomdoors
-cd rans0m
+cd ransomdoors
 dotnet build
 dotnet run
 ```
